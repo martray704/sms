@@ -8,7 +8,7 @@ using System.Management;
 using System.Data;
 
 
-namespace Luminance.Core
+namespace SMS.Core
 {
     public class SMS
     {
