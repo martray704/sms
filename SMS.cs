@@ -216,7 +216,7 @@ namespace Luminance.Core
 
             if (ret.Contains("SM")) //reply
             {
-               // Send("09094483517", "We receive your text");               
+               // Send("+639998885245", "We receive your text");               
             }
 
             return ret;
