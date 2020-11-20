@@ -9,3 +9,7 @@ Code tested on 2 GSM modems
 - Ostent
 - Wavecom
 
+-----------
+Note:
+- Be sure to replace the namespace "Luminance.Core" in to your project name.
+
