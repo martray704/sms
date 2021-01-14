@@ -11,7 +11,6 @@ Code tested on 2 GSM modems
 
 -----------
 Note:
-- Be sure to replace the namespace "Luminance.Core" in to your project name.
 - Be sure that your gsm modem device is already inserted in one of your usb slots.
 - Test the device by selecting COM ports listed in the method GetPorts().
 - In your application startup, call the OpenPort() method.
