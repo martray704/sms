@@ -222,19 +222,47 @@ namespace SMS.Core
             return ret;
         }
 
-        public string ReadCall()
+		public string ListenWithCall()
         {
-            string ret = string.Empty;
-            port.WriteLine(@"AT" + (char)(13));
-            Thread.Sleep(200);
-            port.WriteLine("AT+CLIP=1" + (char)(13));
-            Thread.Sleep(200);
-            port.WriteLine("AT+CHUP" + (char)(13));
-            Thread.Sleep(200);
-            port.WriteLine("ATH" + (char)(13)); // deny the call
-            Thread.Sleep(200);
-            ret = port.ReadExisting();
+             string ret = "NOTHING";
 
+             if (port.IsOpen)
+             {
+                 port.WriteLine(@"AT+CNMI=1");
+                 Thread.Sleep(200);
+                 ret = port.ReadExisting();
+
+                 if (ret.Contains("RING"))
+                 {
+                     ret = ReadCall();
+                 }
+
+                 if (ret.Contains("SM")) //reply
+                 {
+                     // Send("09094483517", "We receive your text");               
+                 }
+             }
+
+            return ret;
+        }
+		
+         public string ReadCall()
+        {           
+            string ret = "NOTHING";
+            port.Close();
+            port.Open();
+            if (port.IsOpen)
+            {               
+                port.WriteLine(@"AT" + (char)(13));
+                Thread.Sleep(2000);
+                port.WriteLine("AT+CLIP=1" + (char)(13)); //get caller id
+                //Thread.Sleep(200);
+                //port.WriteLine("AT+CHUP" + (char)(13));
+                Thread.Sleep(2000);
+                port.WriteLine("ATH" + (char)(13)); // deny the call
+                Thread.Sleep(5000);
+                ret = port.ReadExisting();
+            }
             //if (ret.Contains("ERROR"))
             //    ret = "An error occured. Please try again." + serialPort.ReadExisting();
 
